@@ -1,0 +1,11 @@
+<div class="card border-secondary mb-3">
+    <div class="card-header">Home</div>
+    <form [formGroup]="tweet" (submit)="submit();">
+        <div class="card-body text-secondary">
+                <textarea placeholder="What's Happening" formControlName="content" class="container text-area"></textarea>   
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn" [disabled]="!tweet.valid">Tweet</button>
+        </div>
+    </form>    
+</div>
