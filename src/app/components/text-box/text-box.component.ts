@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MainService } from 'src/app/main.service';
+import { Tweet } from 'src/app/models/tweet';
 
 @Component({
   selector: 'app-text-box',
@@ -8,21 +10,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class TextBoxComponent implements OnInit {
   tweetMaxLength = 140;
-  tweets: string[] = [];
-  
   tweet: FormGroup = this.fb.group ({
     content: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(this.tweetMaxLength)]]
   });
 
   constructor(
     public fb: FormBuilder,
+    private service: MainService
   ) { }
   ngOnInit(): void {
   }
 
-  submit(): boolean {
-    let tweetContent = this.tweet.value['content'];
-    this.tweets.push(tweetContent);
-    return false;
+  submit(): void {
+    const tweetContent = this.tweet.value['content'];
+    const date = new Date();
+    const newTweet = new Tweet(tweetContent, date);
+
+    this.service.setTweets(newTweet);
   }
 }
