@@ -1,5 +1,8 @@
-<div class="card">
+<div *ngFor="let tweet of tweets" class="card">
     <div class="card-body">
-      This is some text within a card body.
+      {{tweet.content}}
+    </div>
+    <div class="card-footer">
+        <button (click)="delete(tweet.id);" class="btn btn-outline-danger"> X </button>
     </div>
 </div>
