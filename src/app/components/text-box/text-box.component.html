@@ -1,11 +1,12 @@
 <div class="card border-secondary mb-3">
     <div class="card-header">Home</div>
-    <form [formGroup]="tweet" (submit)="submit();">
+    <form class="container" [formGroup]="tweet" (submit)="submit();">
         <div class="card-body text-secondary">
-                <textarea placeholder="What's Happening" formControlName="content" class="container text-area"></textarea>   
+                <textarea [maxlength]="tweetMaxLength" [(ngModel)]="chars" (ngModelChange)="charCounter(chars)" placeholder="What's Happening" formControlName="content" class="container text-area"></textarea>   
         </div>
-        <div class="card-footer">
-            <button type="submit" class="btn" [disabled]="!tweet.valid">Tweet</button>
+        <div class="row justify-content-around mb-3">
+            <button type="submit" class="btn btn-primary col-3" [disabled]="!tweet.valid">Tweet</button>
+            <p class="col-3">{{charsLeft || tweetMaxLength}}</p>
         </div>
     </form>    
 </div>
