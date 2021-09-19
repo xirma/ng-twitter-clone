@@ -1,4 +1,7 @@
 <div *ngFor="let tweet of tweets.slice().reverse()" class="card">
+    <div class="card-header">
+      {{tweet.dateToShow}}
+    </div>
     <div class="card-body">
       {{tweet.content}}
     </div>
