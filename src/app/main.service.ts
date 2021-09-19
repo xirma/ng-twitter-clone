@@ -17,7 +17,7 @@ export class MainService {
     data.forEach(tweet => this.setTweets(tweet));
   }
 
-  setTweets(tweet): void {
+  setTweets(tweet: Tweet): void {
     this.tweets.push(tweet);
     this.observableTweets.next(this.tweets);
     this.storeTweets();
