@@ -35,11 +35,18 @@ export class TextBoxComponent implements OnInit {
     const newTweet = new Tweet(tweetContent, date);
 
     this.service.setTweets(newTweet);
+    this.setChars(this.tweetMaxLength);
     this.tweet.reset();
   }
 
   charCounter(value): void {
-    const chars = this.tweetMaxLength - value.length;
-    this.observableChars.next(chars.toString());
+    if (value) {
+      const chars = this.tweetMaxLength - value.length;
+      this.setChars(chars);
+    }
+  }
+
+  setChars(value): void {
+    this.observableChars.next(value.toString());
   }
 }
