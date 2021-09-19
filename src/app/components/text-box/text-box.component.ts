@@ -12,7 +12,7 @@ import { Tweet } from 'src/app/models/tweet';
 export class TextBoxComponent implements OnInit {
   tweetMaxLength = 130;
   chars: string;
-  charsLeft = '130';
+  charsLeft: string;
   tweet: FormGroup = this.fb.group ({
     content: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(this.tweetMaxLength)]]
   });
@@ -39,11 +39,13 @@ export class TextBoxComponent implements OnInit {
     this.tweet.reset();
   }
 
-  charCounter(value): void {
-    if (value) {
-      const chars = this.tweetMaxLength - value.length;
+  charCounter(item: string): void {
+    if (item) {
+      const chars = this.tweetMaxLength - item.length;
       this.setChars(chars);
+      return;
     }
+    this.setChars(this.tweetMaxLength);
   }
 
   setChars(value): void {
