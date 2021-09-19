@@ -48,7 +48,7 @@ export class TextBoxComponent implements OnInit {
     this.setChars(this.tweetMaxLength);
   }
 
-  setChars(value): void {
+  setChars(value: number): void {
     this.observableChars.next(value.toString());
   }
 }

@@ -12,8 +12,8 @@ export class TweetsListComponent implements OnInit {
 
   tweets: Tweet[];
   tweetDate = timer(1000, 1000);
-  dateObservable = this.tweetDate.subscribe((val) => {
-    this.tweets.forEach((item, index) => {
+  dateObservable = this.tweetDate.subscribe(() => {
+    this.tweets.forEach((item: Tweet) => {
       const dateNow = new Date();
       const timeNow = dateNow.getTime();
       const tweetDate = new Date(item.date);
